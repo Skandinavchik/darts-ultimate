@@ -1,0 +1,19 @@
+{
+  "editor.tabSize": 2,
+  "eslint.format.enable": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "tailwindCSS.lint.invalidConfigPath": "ignore",
+  "files.associations": {
+     "*.css": "tailwindcss"
+  },
+  "cSpell.words": [
+    "asynciterable",
+    "autorenew",
+    "Codegen",
+    "fontawesome",
+    "Navlist",
+    "supabase"
+  ]
+}

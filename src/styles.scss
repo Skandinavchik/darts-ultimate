@@ -1,0 +1,12 @@
+@use './styles/theme/theme.scss';
+@use './styles/overrides/button.scss';
+@use './styles/overrides/toolbar.scss';
+@use './styles/overrides/sidenav.scss';
+@use './styles/overrides/list.scss';
+@use './styles/overrides/form-field.scss';
+@import './styles/tailwind/tailwind.css';
+
+body {
+  font-family: Nunito Sans;
+  background: var(--mat-sys-surface);
+}

@@ -1,0 +1,40 @@
+<main>
+  <div class="container py-8 min-h-[calc(100dvh-4rem)] flex justify-center items-center">
+    <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()" class="w-[32rem] rounded-lg px-4 py-8 border border-[--mat-sys-outline-variant]">
+      <h1 class="text-center text-2xl text-[--mat-sys-on-surface] font-medium mb-8">Create Your Account</h1>
+
+      <p>
+        <mat-form-field appearance="outline" class="w-full">
+          <input matInput type="text" placeholder="Full name" formControlName="fullname">
+          <mat-error>{{'Full name is required'}}</mat-error>
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field appearance="outline" class="w-full">
+          <input matInput type="email" placeholder="Email" formControlName="email">
+          <mat-error>{{''}}</mat-error>
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field appearance="outline" class="w-full">
+          <input matInput type="password" placeholder="Password" formControlName="password">
+          <mat-error>{{''}}</mat-error>
+        </mat-form-field>
+      </p>
+
+      <button type="submit" mat-flat-button [disabled]="isLoading() ? true : false" class="w-full my-4">
+        <mat-icon [fontIcon]="isLoading() ? 'autorenew' : 'login'" [class.animate-spin]="isLoading()" class=""/>
+        Sign up
+      </button>
+
+      <p class="text-center text-md">Already have an account? <a routerLink="/login" class="underline">Login</a></p>
+
+      <p class="text-xs text-center leading-6 my-2">OR CONTINUE WITH</p>
+      
+      <app-social-auth />
+    </form>
+  </div>
+</main>
+

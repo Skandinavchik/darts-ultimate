@@ -1,0 +1,8 @@
+@use '@angular/material' as mat;
+
+:root {
+  @include mat.toolbar-overrides((
+    standard-height: 4rem,
+    mobile-height: 4rem,
+  ));
+}

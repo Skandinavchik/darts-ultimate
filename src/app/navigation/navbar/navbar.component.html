@@ -1,0 +1,48 @@
+<mat-sidenav-container class="min-h-[100dvh]">
+  <mat-sidenav #sidenav position="end">
+    <mat-toolbar class="flex justify-end items-center">
+      <button mat-mini-fab (click)="sidenav.close()" class="leading-none">
+        <mat-icon fontIcon="close" />
+      </button>
+    </mat-toolbar>
+    <div class="container">
+      <app-mobile-navlist (click)="sidenav.close()" />
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <header>
+      <mat-toolbar class="flex justify-between items-center navbar">
+        <a routerLink="/" class="text-lg font-medium">DartsUltimate</a>
+        @if (!isXSmall()) {
+          <div class="flex items-center gap-16">
+            <app-navlist />
+            <div class="flex items-center gap-4">
+              <button mat-mini-fab (click)="toggleTheme()" class="">
+                <mat-icon [fontIcon]="themeIcon()"/>
+              </button>
+              @if (this.authService.currentUser()) {
+                <p>{{this.authService.currentUser()?.fullname}}</p>
+              } @else {
+                <a mat-flat-button routerLink="/login">
+                  <mat-icon fontIcon="login"/>
+                  Login
+                </a>
+              }
+            </div>
+          </div>
+        } @else {
+          <div class="flex items-center gap-4">
+            <button mat-mini-fab (click)="toggleTheme()" class="">
+              <mat-icon [fontIcon]="themeIcon()"/>
+            </button>
+            <button mat-mini-fab (click)="sidenav.open()" class="leading-none">
+              <mat-icon fontIcon="menu"/>
+            </button>
+          </div>
+        }
+      </mat-toolbar>
+    </header>
+    <ng-content />
+  </mat-sidenav-content>
+</mat-sidenav-container>

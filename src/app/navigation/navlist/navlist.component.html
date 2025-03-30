@@ -1,0 +1,9 @@
+<nav class="flex items-center gap-16">
+  <ul class="flex items-center gap-8 text-base" role="navigation">
+    @for (navItem of navList(); track navItem.label) {
+      <li>
+        <a [routerLink]="navItem.path">{{ navItem.label }}</a>
+      </li>
+    }
+  </ul>
+</nav>
