@@ -24,12 +24,12 @@ export class AppComponent implements OnInit {
   authService = inject(AuthService)
 
   ngOnInit() {
-    this.authService.supabaseClient.auth.onAuthStateChange((event, session) => {
-      if (event === 'SIGNED_IN') {
-        this.authService.currentUser.set(session?.user.user_metadata['full_name'])
-      }
+    // this.authService.supabaseClient.auth.onAuthStateChange((event, session) => {
+    //   if (event === 'SIGNED_IN') {
+    //     this.authService.currentUser.set(session?.user.user_metadata['full_name'])
+    //   }
 
-      if (event === 'SIGNED_OUT') this.authService.currentUser.set(null)
-    })
+    //   if (event === 'SIGNED_OUT') this.authService.currentUser.set(null)
+    // })
   }
 }

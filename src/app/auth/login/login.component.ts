@@ -51,17 +51,17 @@ export class LoginComponent {
     const { email, password } = this.loginForm.getRawValue()
 
     this.isLoading.set(true)
-    this.authService.login(email, password)
-      .subscribe(({ error }) => {
-        this.isLoading.set(false)
-        if (error) {
-          this.errorMessage.set('Invalid email or password')
-          return
-        }
+    // this.authService.login(email, password)
+    //   .subscribe(({ error }) => {
+    //     this.isLoading.set(false)
+    //     if (error) {
+    //       this.errorMessage.set('Invalid email or password')
+    //       return
+    //     }
 
-        this.errorMessage.set(null)
+    //     this.errorMessage.set(null)
 
-        this.router.navigateByUrl('/profile')
-      })
+    //     this.router.navigateByUrl('/profile')
+    //   })
   }
 }

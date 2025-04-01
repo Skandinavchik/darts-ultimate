@@ -27,6 +27,6 @@ export class MobileNavlistComponent {
   currentUser = computed(this.authService.currentUser)
 
   logout() {
-    this.authService.logout()
+    // this.authService.logout()
   }
 }
