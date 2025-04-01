@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "darts_ultimate_client": {
+    "darts-ultimate": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/darts_ultimate_client",
+            "outputPath": "dist/darts-ultimate",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -76,10 +76,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "darts_ultimate_client:build:production"
+              "buildTarget": "darts-ultimate:build:production"
             },
             "development": {
-              "buildTarget": "darts_ultimate_client:build:development"
+              "buildTarget": "darts-ultimate:build:development"
             }
           },
           "defaultConfiguration": "development"
