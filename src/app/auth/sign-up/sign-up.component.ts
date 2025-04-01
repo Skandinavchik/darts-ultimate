@@ -58,7 +58,7 @@ export class SignUpComponent {
         this.isLoading.set(false)
         if (error) return
 
-        this.router.navigateByUrl('/')
+        this.router.navigateByUrl('/profile')
       })
   }
 }
