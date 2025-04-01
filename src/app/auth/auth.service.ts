@@ -3,7 +3,7 @@ import { AuthResponse, createClient } from '@supabase/supabase-js'
 import { from, Observable } from 'rxjs'
 import { FormControl } from '@angular/forms'
 import { Router } from '@angular/router'
-import { environment } from '../../environments/environment'
+// import { environment } from '../../environments/environment'
 
 @Injectable({
   providedIn: 'root',
