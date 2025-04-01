@@ -1,5 +1,5 @@
 import { Component, computed, inject, signal, ViewChild } from '@angular/core'
-import { RouterLink } from '@angular/router'
+import { Router, RouterLink } from '@angular/router'
 import { MatToolbarModule } from '@angular/material/toolbar'
 import { MatSlideToggleModule } from '@angular/material/slide-toggle'
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout'
@@ -8,6 +8,7 @@ import { NavlistComponent } from '../navlist/navlist.component'
 import { MatButtonModule } from '@angular/material/button'
 import { MatIconModule } from '@angular/material/icon'
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav'
+import { MatMenuModule } from '@angular/material/menu'
 import { MobileNavlistComponent } from '../mobile-navlist/mobile-navlist.component'
 import { ThemeService } from '../../services/theme/theme.service'
 import { AuthService } from '../../auth/auth.service'
@@ -22,6 +23,7 @@ import { AuthService } from '../../auth/auth.service'
     NavlistComponent,
     MatButtonModule,
     MatIconModule,
+    MatMenuModule,
     MobileNavlistComponent,
   ],
   templateUrl: './navbar.component.html',
@@ -30,6 +32,7 @@ import { AuthService } from '../../auth/auth.service'
 export class NavbarComponent {
   private theme = inject(ThemeService)
   private breakpointObserver = inject(BreakpointObserver)
+  private router = inject(Router)
   authService = inject(AuthService)
 
   @ViewChild('sidenav') sidenav?: MatSidenav
@@ -50,5 +53,10 @@ export class NavbarComponent {
 
   toggleTheme() {
     this.theme.toggleThemeMode()
+  }
+
+  logout() {
+    this.authService.logout()
+    this.router.navigateByUrl('/')
   }
 }

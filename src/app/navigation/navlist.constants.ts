@@ -1,4 +1,4 @@
-import { NavItem } from './navlist.type'
+import { NavItem } from './navlist.types'
 
 export const NAV_LIST: NavItem[] = [
   {

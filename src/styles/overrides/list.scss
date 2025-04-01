@@ -5,3 +5,9 @@
     active-indicator-shape: 0.5rem,
   ));
 }
+
+app-navlist {
+  @include mat.list-overrides((
+    list-item-one-line-container-height: 2.5rem,
+  ))
+}

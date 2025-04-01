@@ -1,4 +1,4 @@
-<mat-nav-list class="text-center">
+<mat-nav-list class="text-center space-y-1">
   @for (navItem of navList(); track navItem.label) {
     <a mat-list-item [routerLink]="navItem.path">{{ navItem.label }}</a>
   }

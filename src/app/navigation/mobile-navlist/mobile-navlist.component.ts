@@ -4,8 +4,8 @@ import { MatListModule } from '@angular/material/list'
 import { MatButtonModule } from '@angular/material/button'
 import { MatIconModule } from '@angular/material/icon'
 import { SocialAuthComponent } from '../../auth/social-auth/social-auth.component'
-import { NavItem } from '../navlist.type'
-import { NAV_LIST } from '../navlist.constant'
+import { NavItem } from '../navlist.types'
+import { NAV_LIST } from '../navlist.constants'
 
 @Component({
   selector: 'app-mobile-navlist',
