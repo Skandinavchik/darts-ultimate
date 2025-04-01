@@ -1,5 +1,0 @@
-mutation RegisterUser($registerInput: RegisterInput!) {
-  register(registerInput: $registerInput) {
-    id
-  }
-}

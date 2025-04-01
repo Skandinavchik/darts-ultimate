@@ -1,9 +1,5 @@
-<nav class="flex items-center gap-16">
-  <ul class="flex items-center gap-8 text-base" role="navigation">
-    @for (navItem of navList(); track navItem.label) {
-      <li>
-        <a [routerLink]="navItem.path">{{ navItem.label }}</a>
-      </li>
-    }
-  </ul>
-</nav>
+<mat-nav-list class="list-horizontal space-x-1">
+  @for (navItem of navList(); track navItem.label) {
+    <a mat-list-item [routerLink]="navItem.path" class="list-link">{{ navItem.label }}</a>
+  }
+</mat-nav-list>

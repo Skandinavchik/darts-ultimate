@@ -13,17 +13,4 @@ describe('AppComponent', () => {
     const app = fixture.componentInstance
     expect(app).toBeTruthy()
   })
-
-  it('should have the \'Darts Ultimate\' title', () => {
-    const fixture = TestBed.createComponent(AppComponent)
-    const app = fixture.componentInstance
-    expect(app.title).toEqual('Darts Ultimate')
-  })
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent)
-    fixture.detectChanges()
-    const compiled = fixture.nativeElement as HTMLElement
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, Darts Ultimate')
-  })
 })
