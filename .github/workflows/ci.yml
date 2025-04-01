@@ -52,19 +52,10 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      # - name: Lint
-      #   run: npm run lint
-
-      # - name: Run Tests
-      #   run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadless
-
       - name: Build Application (Dev)
         run: |
           SUPABASE_URL=${{ secrets.SUPABASE_URL }} \
           SUPABASE_KEY=${{ secrets.SUPABASE_KEY }} \
           npm run build
-
-      - name: Install Netlify CLI
-        run: npm install -g netlify-cli
 
       
