@@ -1,16 +1,18 @@
-import { Injectable, signal } from '@angular/core'
+import { inject, Injectable, signal } from '@angular/core'
 import { AuthResponse, createClient } from '@supabase/supabase-js'
 import { environment } from '../../environments/environment'
 import { from, Observable } from 'rxjs'
 import { FormControl } from '@angular/forms'
+import { Router } from '@angular/router'
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+  router = inject(Router)
   supabaseClient = createClient(environment.supabase.url, environment.supabase.key)
 
-  currentUser = signal<{ fullname: string } | null>(null)
+  currentUser = signal<string | null>(null)
   private errorMessage = signal({
     fullname: '',
     email: '',
@@ -42,6 +44,7 @@ export class AuthService {
 
   logout() {
     this.supabaseClient.auth.signOut()
+    this.router.navigateByUrl('/')
   }
 
   handleErrorMessage(name: string, control: FormControl<string>) {

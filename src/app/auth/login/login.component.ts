@@ -61,7 +61,7 @@ export class LoginComponent {
 
         this.errorMessage.set(null)
 
-        this.router.navigateByUrl('/')
+        this.router.navigateByUrl('/profile')
       })
   }
 }
