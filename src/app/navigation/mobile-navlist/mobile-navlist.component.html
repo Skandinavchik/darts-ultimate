@@ -5,10 +5,20 @@
 </mat-nav-list>
 
 <div class="mt-2">
-  <a mat-flat-button routerLink="/login" class="w-full">
-    <mat-icon fontIcon="login"/>
-    Login
-  </a>
-  <p class="text-xs text-center leading-10 text-[--mat-sys-outline]">OR CONTINUE WITH</p>
-  <app-social-auth />
+  @if (authService.currentUser()) {
+    <a mat-flat-button routerLink="/" (click)="authService.logout()" class="w-full">
+      <mat-icon fontIcon="logout"/>
+      Logout
+    </a>
+  } @else {
+    <a mat-flat-button routerLink="/login" class="w-full">
+      <mat-icon fontIcon="login"/>
+      Login
+    </a>
+
+    <p class="text-xs text-center leading-10 text-[--mat-sys-outline]">OR CONTINUE WITH</p>
+    <app-social-auth />
+  }
+  
+  
 </div>

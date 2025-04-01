@@ -54,10 +54,9 @@ export class SignUpComponent {
 
     this.isLoading.set(true)
     this.authService.registerUser(email, password, fullname)
-      .subscribe(res => {
+      .subscribe(({ error }) => {
         this.isLoading.set(false)
-        console.log(res.data)
-        if (res.error) return
+        if (error) return
 
         this.router.navigateByUrl('/')
       })
