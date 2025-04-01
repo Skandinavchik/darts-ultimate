@@ -1,5 +1,5 @@
 import { Component, computed, inject, signal, ViewChild } from '@angular/core'
-import { Router, RouterLink } from '@angular/router'
+import { RouterLink } from '@angular/router'
 import { MatToolbarModule } from '@angular/material/toolbar'
 import { MatSlideToggleModule } from '@angular/material/slide-toggle'
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout'
@@ -32,7 +32,6 @@ import { AuthService } from '../../auth/auth.service'
 export class NavbarComponent {
   private readonly theme = inject(ThemeService)
   private readonly breakpointObserver = inject(BreakpointObserver)
-  private readonly router = inject(Router)
   private readonly authService = inject(AuthService)
 
   @ViewChild('sidenav') sidenav?: MatSidenav
@@ -58,6 +57,5 @@ export class NavbarComponent {
 
   logout() {
     this.authService.logout()
-    this.router.navigateByUrl('/')
   }
 }
