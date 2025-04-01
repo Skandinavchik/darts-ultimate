@@ -3,9 +3,9 @@
 :root {
   @include mat.button-overrides((
     filled-container-shape: 0.5rem,
-    filled-label-text-size: 1rem,
+    filled-label-text-size: var(--mat-sys-label-large-size),
     outlined-container-shape: 0.5rem,
-    outlined-label-text-size: 1rem,
+    outlined-label-text-size: var(--mat-sys-label-large-size),
   ));
   @include mat.fab-overrides((
     small-container-shape: 0.5rem,
@@ -15,12 +15,5 @@
     small-hover-container-elevation-shadow: var(--mat-sys-level0),
     small-pressed-container-elevation-shadow: var(--mat-sys-level0),
     small-foreground-color: var(--mat-sys-on-surface),
-  ));
-}
-
-app-mobile-navlist {
-  @include mat.button-overrides((
-    filled-container-height: 3rem,
-    outlined-container-height: 3rem,
   ));
 }
