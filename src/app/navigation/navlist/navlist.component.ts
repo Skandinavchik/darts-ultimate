@@ -1,12 +1,13 @@
 import { Component, signal } from '@angular/core'
 import { RouterLink } from '@angular/router'
 import { MatButtonModule } from '@angular/material/button'
-import { NavItem } from '../navlist.type'
-import { NAV_LIST } from '../navlist.constant'
+import { MatListModule } from '@angular/material/list'
+import { NavItem } from '../navlist.types'
+import { NAV_LIST } from '../navlist.constants'
 
 @Component({
   selector: 'app-navlist',
-  imports: [RouterLink, MatButtonModule],
+  imports: [RouterLink, MatButtonModule, MatListModule],
   templateUrl: './navlist.component.html',
   styleUrl: './navlist.component.scss',
 })

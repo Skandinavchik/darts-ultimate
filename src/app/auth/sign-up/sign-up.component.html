@@ -5,26 +5,26 @@
 
       <p>
         <mat-form-field appearance="outline" class="w-full">
-          <input matInput type="text" placeholder="Full name" formControlName="fullname">
-          <mat-error>{{'Full name is required'}}</mat-error>
+          <input matInput type="text" placeholder="Full name" formControlName="fullname" (blur)="handleErrorMessage('fullname', signUpForm.controls.fullname)">
+          <mat-error>{{ errorMessage().fullname }}</mat-error>
         </mat-form-field>
       </p>
 
       <p>
         <mat-form-field appearance="outline" class="w-full">
-          <input matInput type="email" placeholder="Email" formControlName="email">
-          <mat-error>{{''}}</mat-error>
+          <input matInput type="email" placeholder="Email" formControlName="email" (blur)="handleErrorMessage('email', signUpForm.controls.email)">
+          <mat-error>{{ errorMessage().email }}</mat-error>
         </mat-form-field>
       </p>
 
       <p>
         <mat-form-field appearance="outline" class="w-full">
-          <input matInput type="password" placeholder="Password" formControlName="password">
-          <mat-error>{{''}}</mat-error>
+          <input matInput type="password" placeholder="Password" formControlName="password" (blur)="handleErrorMessage('password', signUpForm.controls.password)">
+          <mat-error>{{ errorMessage().password }}</mat-error>
         </mat-form-field>
       </p>
 
-      <button type="submit" mat-flat-button [disabled]="isLoading() ? true : false" class="w-full my-4">
+      <button type="submit" mat-flat-button [disabled]="isLoading()" class="w-full my-4">
         <mat-icon [fontIcon]="isLoading() ? 'autorenew' : 'login'" [class.animate-spin]="isLoading()" class=""/>
         Sign up
       </button>
