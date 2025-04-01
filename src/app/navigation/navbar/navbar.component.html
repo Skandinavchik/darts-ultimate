@@ -26,7 +26,7 @@
                   {{ currentUser()?.slice(0, 1)?.toUpperCase() }}
                 </button>
                 <mat-menu #beforeMenu="matMenu" xPosition="before">
-                  <button mat-menu-item>Profile</button>
+                  <button mat-menu-item routerLink="/profile">Profile</button>
                   <button mat-menu-item (click)="logout()">Logout</button>
                 </mat-menu>
               } @else {
