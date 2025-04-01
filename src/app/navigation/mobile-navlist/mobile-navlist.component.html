@@ -5,8 +5,8 @@
 </mat-nav-list>
 
 <div class="mt-2">
-  @if (authService.currentUser()) {
-    <a mat-flat-button routerLink="/" (click)="authService.logout()" class="w-full">
+  @if (currentUser()) {
+    <a mat-flat-button routerLink="/" (click)="logout()" class="w-full">
       <mat-icon fontIcon="logout"/>
       Logout
     </a>

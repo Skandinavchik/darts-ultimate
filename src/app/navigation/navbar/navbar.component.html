@@ -21,12 +21,12 @@
               <button mat-mini-fab (click)="toggleTheme()" class="">
                 <mat-icon [fontIcon]="themeIcon()"/>
               </button>
-              @if (this.authService.currentUser()) {
+              @if (currentUser()) {
                 <button mat-mini-fab [matMenuTriggerFor]="beforeMenu">
-                  {{this.authService.currentUser()?.fullname?.slice(0, 1)?.toUpperCase()}}
+                  {{ currentUser()?.fullname?.slice(0, 1)?.toUpperCase() }}
                 </button>
                 <mat-menu #beforeMenu="matMenu" xPosition="before">
-                  <button mat-menu-item>Item 1</button>
+                  <button mat-menu-item>Profile</button>
                   <button mat-menu-item (click)="logout()">Logout</button>
                 </mat-menu>
               } @else {

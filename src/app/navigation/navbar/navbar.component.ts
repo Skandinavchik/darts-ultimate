@@ -30,15 +30,16 @@ import { AuthService } from '../../auth/auth.service'
   styleUrl: './navbar.component.scss',
 })
 export class NavbarComponent {
-  private theme = inject(ThemeService)
-  private breakpointObserver = inject(BreakpointObserver)
-  private router = inject(Router)
-  authService = inject(AuthService)
+  private readonly theme = inject(ThemeService)
+  private readonly breakpointObserver = inject(BreakpointObserver)
+  private readonly router = inject(Router)
+  private readonly authService = inject(AuthService)
 
   @ViewChild('sidenav') sidenav?: MatSidenav
 
   isXSmall = signal(false)
   currentTheme = computed(() => this.theme.getCurrentThemeMode())
+  currentUser = computed(this.authService.currentUser)
   themeIcon = computed(() => this.currentTheme() === 'light-mode' ? 'dark_mode' : 'light_mode')
 
   constructor() {

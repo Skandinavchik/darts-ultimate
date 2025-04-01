@@ -9,8 +9,8 @@ import { FormControl } from '@angular/forms'
 })
 export class AuthService {
   supabaseClient = createClient(environment.supabase.url, environment.supabase.key)
-  currentUser = signal<{ fullname: string } | null>(null)
 
+  currentUser = signal<{ fullname: string } | null>(null)
   private errorMessage = signal({
     fullname: '',
     email: '',

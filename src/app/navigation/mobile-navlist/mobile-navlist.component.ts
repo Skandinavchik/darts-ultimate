@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core'
+import { Component, computed, inject, signal } from '@angular/core'
 import { RouterLink } from '@angular/router'
 import { MatListModule } from '@angular/material/list'
 import { MatButtonModule } from '@angular/material/button'
@@ -21,6 +21,12 @@ import { AuthService } from '../../auth/auth.service'
   styleUrl: './mobile-navlist.component.scss',
 })
 export class MobileNavlistComponent {
-  authService = inject(AuthService)
+  private readonly authService = inject(AuthService)
+
   navList = signal<NavItem[]>(NAV_LIST)
+  currentUser = computed(this.authService.currentUser)
+
+  logout() {
+    this.authService.logout()
+  }
 }
