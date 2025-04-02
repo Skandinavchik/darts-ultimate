@@ -5,12 +5,14 @@ import { FormControl } from '@angular/forms'
 import { Router } from '@angular/router'
 import { environment } from '../../environments/environment'
 
+const { url, key } = environment.supabase
+
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+  supabaseClient = createClient(url, key)
   router = inject(Router)
-  supabaseClient = createClient(environment.supabase.url, environment.supabase.key)
 
   currentUser = signal<string | null>(null)
   private errorMessage = signal({
@@ -45,6 +47,17 @@ export class AuthService {
   logout() {
     this.supabaseClient.auth.signOut()
     this.router.navigateByUrl('/')
+  }
+
+  signWithGoogle() {
+    const promise = this.supabaseClient.auth.signInWithOAuth({
+      provider: 'google',
+      options: {
+        redirectTo: 'http://localhost:4200/profile',
+      },
+    })
+
+    return from(promise)
   }
 
   handleErrorMessage(name: string, control: FormControl<string>) {
