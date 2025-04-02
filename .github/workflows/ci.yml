@@ -72,12 +72,17 @@ jobs:
       - name: Deploy to Netlify (Based on Branch)
         run: |
           if [[ "${GITHUB_REF}" == "refs/heads/main" ]]; then
-            netlify deploy --dir=dist/darts-ultimate/browser --prod
+            # Deploy to the production site (main site)
+            echo "Deploying to Netlify (Production)"
+            netlify deploy --dir=dist/darts-ultimate/browser --prod --site=$NETLIFY_PROD_ID
           elif [[ "${GITHUB_REF}" == "refs/heads/dev" ]]; then
-            netlify deploy --dir=dist/darts-ultimate/browser
-          fi
+            # Deploy to the dev site (dev site)
+            echo "Deploying to Netlify (Development)"
+            netlify deploy --dir=dist/darts-ultimate/browser --prod --site=$NETLIFY_DEV_ID
+            fi
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_ID }}
+          NETLIFY_PROD_ID: ${{ secrets.NETLIFY_PROD_ID }}
+          NETLIFY_DEV_ID: ${{ secrets.NETLIFY_DEV_ID }}
 
       
