@@ -1,5 +1,5 @@
 export type Environment = {
-  production: boolean
+  env: 'local' | 'dev' | 'prod'
   supabase: SupabaseCredentials,
 }
 
