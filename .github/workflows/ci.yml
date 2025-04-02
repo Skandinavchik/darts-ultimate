@@ -23,6 +23,8 @@ jobs:
 
       - name: Create environment files
         run: |
+          mkdir -p src/environments
+          
           # Create environment.ts for production
           echo "import { Environment } from '../types/environment.type';" > src/environments/environment.ts
           echo "export const environment: Environment = {" >> src/environments/environment.ts
