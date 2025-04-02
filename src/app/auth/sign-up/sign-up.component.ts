@@ -53,12 +53,12 @@ export class SignUpComponent {
     const { email, password, fullname } = this.signUpForm.getRawValue()
 
     this.isLoading.set(true)
-    // this.authService.registerUser(email, password, fullname)
-    //   .subscribe(({ error }) => {
-    //     this.isLoading.set(false)
-    //     if (error) return
+    this.authService.registerUser(email, password, fullname)
+      .subscribe(({ error }) => {
+        this.isLoading.set(false)
+        if (error) return
 
-    //     this.router.navigateByUrl('/profile')
-    //   })
+        this.router.navigateByUrl('/profile')
+      })
   }
 }

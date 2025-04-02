@@ -1,0 +1,59 @@
+name: Angular CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up environment variables
+        run: |
+          echo "SUPABASE_URL=${{ secrets.SUPABASE_URL }}" >> $GITHUB_ENV
+          echo "SUPABASE_KEY=${{ secrets.SUPABASE_KEY }}" >> $GITHUB_ENV
+
+      - name: Create environment files
+        run: |
+          # Create environment.ts for production
+          echo "import { Environment } from '../types/environment.type';" > src/environments/environment.ts
+          echo "export const environment: Environment = {" >> src/environments/environment.ts
+          echo "  production: true," >> src/environments/environment.ts
+          echo "  supabase: {" >> src/environments/environment.ts
+          echo "    url: '${{ secrets.SUPABASE_URL }}'," >> src/environments/environment.ts
+          echo "    key: '${{ secrets.SUPABASE_KEY }}'" >> src/environments/environment.ts
+          echo "  }," >> src/environments/environment.ts
+          echo "}" >> src/environments/environment.ts
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build Application (Prod)
+        run: |
+          SUPABASE_URL=${{ secrets.SUPABASE_URL }} \
+          SUPABASE_KEY=${{ secrets.SUPABASE_KEY }} \
+          npm run build --configuration production
+
+      - name: Install Netlify CLI
+        run: npm install -g netlify-cli
+      
+
+      - name: Deploy to Netlify
+        run: netlify deploy --dir=dist/darts-ultimate/browser --prod
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_ID }}

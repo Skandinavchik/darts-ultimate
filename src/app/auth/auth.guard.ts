@@ -7,22 +7,20 @@ export const authGuard: CanActivateFn = () => {
   const router = inject(Router)
   const authService = inject(AuthService)
 
-  return true
+  return from(authService.supabaseClient.auth.getUser())
+    .pipe(
+      take(1),
+      map(({ data }) => {
+        if (!data.user) {
+          router.navigateByUrl('/login')
+          return false
+        }
 
-  // return from(authService.supabaseClient.auth.getUser())
-  //   .pipe(
-  //     take(1),
-  //     map(({ data }) => {
-  //       if (!data.user) {
-  //         router.navigateByUrl('/login')
-  //         return false
-  //       }
-
-  //       return true
-  //     }),
-  //     catchError(() => {
-  //       router.navigateByUrl('/login')
-  //       return of(false)
-  //     }),
-  //   )
+        return true
+      }),
+      catchError(() => {
+        router.navigateByUrl('/login')
+        return of(false)
+      }),
+    )
 }
