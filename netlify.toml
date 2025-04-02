@@ -2,7 +2,7 @@
   publish = "dist/darts-ultimate/browser"
   command = "npm run build"
 
-  [[redirects]]
+  [[redirects]] 
     from = "/*"
     to = "/index.html"
     status = 200
