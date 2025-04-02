@@ -23,6 +23,9 @@ jobs:
 
       - name: Create environment files
         run: |
+          # Create the environments folder if it doesn't exist
+          mkdir -p src/environments
+
           # Create environment.ts for production
           echo "import { Environment } from '../types/environment.type';" > src/environments/environment.ts
           echo "export const environment: Environment = {" >> src/environments/environment.ts
@@ -52,10 +55,27 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Build Application (Dev)
+      - name: Build Application (Based on Branch)
         run: |
-          SUPABASE_URL=${{ secrets.SUPABASE_URL }} \
-          SUPABASE_KEY=${{ secrets.SUPABASE_KEY }} \
-          npm run build
+          if [[ "${GITHUB_REF}" == "refs/heads/main" ]]; then
+            npm run build -- --configuration=production
+          elif [[ "${GITHUB_REF}" == "refs/heads/dev" ]]; then
+            npm run build -- --configuration=development
+          fi
+
+      - name: Install Netlify CLI
+        run: npm install -g netlify-cli
+      
+
+      - name: Deploy to Netlify (Based on Branch)
+        run: |
+          if [[ "${GITHUB_REF}" == "refs/heads/main" ]]; then
+            netlify deploy --dir=dist/darts-ultimate/browser --prod
+          elif [[ "${GITHUB_REF}" == "refs/heads/dev" ]]; then
+            netlify deploy --dir=dist/darts-ultimate/browser
+          fi
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_ID }}
 
       
