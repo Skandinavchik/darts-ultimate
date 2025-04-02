@@ -48,7 +48,8 @@ export class LoginComponent {
 
   onSubmit() {
     if (this.loginForm.invalid) return
-    const { email, password } = this.loginForm.getRawValue()
+
+    const { email, password } = this.authService.transformUserInputs(this.loginForm.getRawValue())
 
     this.isLoading.set(true)
     this.authService.login(email, password)
@@ -60,7 +61,6 @@ export class LoginComponent {
         }
 
         this.errorMessage.set(null)
-
         this.router.navigateByUrl('/profile')
       })
   }

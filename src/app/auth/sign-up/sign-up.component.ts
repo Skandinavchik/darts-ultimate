@@ -50,7 +50,8 @@ export class SignUpComponent {
 
   onSubmit() {
     if (this.signUpForm.invalid) return
-    const { email, password, fullname } = this.signUpForm.getRawValue()
+
+    const { email, password, fullname } = this.authService.transformUserInputs(this.signUpForm.getRawValue())
 
     this.isLoading.set(true)
     this.authService.registerUser(email, password, fullname)

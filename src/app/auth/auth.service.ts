@@ -91,4 +91,13 @@ export class AuthService {
   getErrorMessage() {
     return this.errorMessage
   }
+
+  transformUserInputs(userInput: { email: string, password: string, fullname?: string }) {
+    const { email, password, fullname = '' } = userInput
+    return {
+      email: email.trim().toLowerCase(),
+      password: password.trim(),
+      fullname: fullname?.trim(),
+    }
+  }
 }
