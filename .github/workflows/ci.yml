@@ -33,18 +33,8 @@ jobs:
           echo "  supabase: {" >> src/environments/environment.ts
           echo "    url: '${{ secrets.SUPABASE_URL }}'," >> src/environments/environment.ts
           echo "    key: '${{ secrets.SUPABASE_KEY }}'" >> src/environments/environment.ts
-          echo "  }" >> src/environments/environment.ts
-          echo "};" >> src/environments/environment.ts
-      
-          # Create environment.development.ts for development
-          echo "import { Environment } from '../types/environment.type';" > src/environments/environment.development.ts
-          echo "export const environment: Environment = {" >> src/environments/environment.development.ts
-          echo "  production: false," >> src/environments/environment.development.ts
-          echo "  supabase: {" >> src/environments/environment.development.ts
-          echo "    url: '${{ secrets.SUPABASE_URL }}'," >> src/environments/environment.development.ts
-          echo "    key: '${{ secrets.SUPABASE_KEY }}'" >> src/environments/environment.development.ts
-          echo "  }" >> src/environments/environment.development.ts
-          echo "};" >> src/environments/environment.development.ts
+          echo "  }," >> src/environments/environment.ts
+          echo "}" >> src/environments/environment.ts
 
       - name: Setup Node.js
         uses: actions/setup-node@v3

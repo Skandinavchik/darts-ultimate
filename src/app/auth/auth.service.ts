@@ -10,7 +10,7 @@ import { environment } from '../../environments/environment'
 })
 export class AuthService {
   router = inject(Router)
-  // supabaseClient = createClient(environment.supabase.url, environment.supabase.key)
+  supabaseClient = createClient(environment.supabase.url, environment.supabase.key)
 
   currentUser = signal<string | null>(null)
   private errorMessage = signal({
@@ -19,33 +19,33 @@ export class AuthService {
     password: '',
   })
 
-  // registerUser(email: string, password: string, fullname: string ): Observable<AuthResponse> {
-  //   const promise = this.supabaseClient.auth.signUp({
-  //     email,
-  //     password,
-  //     options: {
-  //       data: {
-  //         full_name: fullname,
-  //       },
-  //     },
-  //   })
+  registerUser(email: string, password: string, fullname: string ): Observable<AuthResponse> {
+    const promise = this.supabaseClient.auth.signUp({
+      email,
+      password,
+      options: {
+        data: {
+          full_name: fullname,
+        },
+      },
+    })
 
-  //   return from(promise)
-  // }
+    return from(promise)
+  }
 
-  // login(email: string, password: string): Observable<AuthResponse> {
-  //   const promise = this.supabaseClient.auth.signInWithPassword({
-  //     email,
-  //     password,
-  //   })
+  login(email: string, password: string): Observable<AuthResponse> {
+    const promise = this.supabaseClient.auth.signInWithPassword({
+      email,
+      password,
+    })
 
-  //   return from(promise)
-  // }
+    return from(promise)
+  }
 
-  // logout() {
-  //   this.supabaseClient.auth.signOut()
-  //   this.router.navigateByUrl('/')
-  // }
+  logout() {
+    this.supabaseClient.auth.signOut()
+    this.router.navigateByUrl('/')
+  }
 
   handleErrorMessage(name: string, control: FormControl<string>) {
     let message = ''
