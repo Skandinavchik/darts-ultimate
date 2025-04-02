@@ -1,6 +1,7 @@
 export type Environment = {
-  env: 'local' | 'dev' | 'prod'
+  production: boolean
   supabase: SupabaseCredentials,
+  redirectTo?: string
 }
 
 type SupabaseCredentials = {

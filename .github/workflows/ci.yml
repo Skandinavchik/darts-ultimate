@@ -34,9 +34,9 @@ jobs:
           echo "  production: true," >> src/environments/environment.ts
           echo "  supabase: {" >> src/environments/environment.ts
           echo "    url: '${{ secrets.SUPABASE_URL }}'," >> src/environments/environment.ts
-          echo "    key: '${{ secrets.SUPABASE_KEY }}'" >> src/environments/environment.ts
-          echo "  }" >> src/environments/environment.ts
-          echo "};" >> src/environments/environment.ts
+          echo "    key: '${{ secrets.SUPABASE_KEY }}'," >> src/environments/environment.ts
+          echo "  }," >> src/environments/environment.ts
+          echo "}" >> src/environments/environment.ts
       
           # Create environment.development.ts for development
           echo "import { Environment } from '../types/environment.type';" > src/environments/environment.development.ts
@@ -44,9 +44,10 @@ jobs:
           echo "  production: false," >> src/environments/environment.development.ts
           echo "  supabase: {" >> src/environments/environment.development.ts
           echo "    url: '${{ secrets.SUPABASE_URL }}'," >> src/environments/environment.development.ts
-          echo "    key: '${{ secrets.SUPABASE_KEY }}'" >> src/environments/environment.development.ts
+          echo "    key: '${{ secrets.SUPABASE_KEY }}'," >> src/environments/environment.development.ts
+          echo "  redirectTo: 'https://dev-dartsultimate.netlify.app/profile',"
           echo "  }," >> src/environments/environment.development.ts
-          echo "};" >> src/environments/environment.development.ts
+          echo "}" >> src/environments/environment.development.ts
 
       - name: Setup Node.js
         uses: actions/setup-node@v3

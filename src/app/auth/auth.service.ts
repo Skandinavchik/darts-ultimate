@@ -4,7 +4,6 @@ import { from, Observable } from 'rxjs'
 import { FormControl } from '@angular/forms'
 import { Router } from '@angular/router'
 import { environment } from '../../environments/environment'
-import { Environment } from '../../types/environment.type'
 
 const { url, key } = environment.supabase
 
@@ -51,14 +50,7 @@ export class AuthService {
   }
 
   signWithGoogle() {
-    const envRedirects: Record<Environment['env'], string> = {
-      local: 'http://localhost:4200/profile',
-      dev: 'https://dartsultimate.netlify.app/profile',
-      prod: 'https://dev-dartsultimate.netlify.app/profile',
-    }
-
-    const redirectTo = envRedirects[environment.env]
-
+    const { redirectTo } = environment
     return from(this.supabaseClient.auth.signInWithOAuth({
       provider: 'google',
       options: { redirectTo },
