@@ -3,15 +3,12 @@ import { AuthResponse, createClient, Provider } from '@supabase/supabase-js'
 import { from, Observable } from 'rxjs'
 import { FormControl } from '@angular/forms'
 import { Router } from '@angular/router'
-import { environment } from '../../environments/environment'
-
-const { url, key } = environment.supabase
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  supabaseClient = createClient(url, key)
+  supabaseClient = createClient(import.meta.env['NG_APP_URL'], import.meta.env['NG_APP_KEY'])
   router = inject(Router)
 
   currentUser = signal<string | null>(null)
@@ -50,7 +47,7 @@ export class AuthService {
   }
 
   signInWithSocial(provider: Provider) {
-    const { redirectTo } = environment
+    const redirectTo = `${window.location.origin}/profile`
     return from(this.supabaseClient.auth.signInWithOAuth({
       provider,
       options: { redirectTo },
