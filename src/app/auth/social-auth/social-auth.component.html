@@ -1,11 +1,11 @@
 <div class="flex justify-center items-center gap-2">
-  <button type="button" mat-icon-button (click)="onGoogleButtonClick()" class="leading-none">
+  <button type="button" mat-icon-button (click)="onSocialButtonClick('google')" class="leading-none">
     <fa-icon [icon]="googleIcon" />
   </button>
-  <a mat-icon-button routerLink="/" class="leading-none">
+  <button type="button" mat-icon-button routerLink="/" class="leading-none">
     <fa-icon [icon]="appleIcon" />
-  </a>
-  <button type="button" mat-icon-button routerLink="/" (click)="onFacebookButtonClick()" class="leading-none">
+  </button>
+  <button type="button" mat-icon-button routerLink="/" (click)="onSocialButtonClick('facebook')" class="leading-none">
     <fa-icon [icon]="facebookIcon" />
   </button>
 </div>
