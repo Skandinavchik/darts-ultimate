@@ -50,10 +50,11 @@ export class AuthService {
   }
 
   signInWithSocial(provider: Provider) {
-    const { redirectTo } = environment
     return from(this.supabaseClient.auth.signInWithOAuth({
       provider,
-      options: { redirectTo },
+      options: {
+        redirectTo: `${window.location.origin}/profile`,
+      },
     }))
   }
 

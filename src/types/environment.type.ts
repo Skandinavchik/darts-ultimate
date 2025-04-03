@@ -1,7 +1,6 @@
 export type Environment = {
   production: boolean
   supabase: SupabaseCredentials,
-  redirectTo?: string
 }
 
 type SupabaseCredentials = {
