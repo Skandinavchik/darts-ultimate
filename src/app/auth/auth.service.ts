@@ -22,7 +22,7 @@ export class AuthService {
   })
 
   registerUser(email: string, password: string, fullname: string ): Observable<AuthResponse> {
-    const promise = this.supabaseClient.auth.signUp({
+    return from(this.supabaseClient.auth.signUp({
       email,
       password,
       options: {
@@ -30,18 +30,14 @@ export class AuthService {
           full_name: fullname,
         },
       },
-    })
-
-    return from(promise)
+    }))
   }
 
   login(email: string, password: string): Observable<AuthResponse> {
-    const promise = this.supabaseClient.auth.signInWithPassword({
+    return from(this.supabaseClient.auth.signInWithPassword({
       email,
       password,
-    })
-
-    return from(promise)
+    }))
   }
 
   logout() {
