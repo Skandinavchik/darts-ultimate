@@ -1,5 +1,5 @@
 import { inject, Injectable, signal } from '@angular/core'
-import { AuthResponse, createClient } from '@supabase/supabase-js'
+import { AuthResponse, createClient, Provider } from '@supabase/supabase-js'
 import { from, Observable } from 'rxjs'
 import { FormControl } from '@angular/forms'
 import { Router } from '@angular/router'
@@ -49,10 +49,10 @@ export class AuthService {
     this.router.navigateByUrl('/')
   }
 
-  signWithGoogle() {
+  signInWithSocial(provider: Provider) {
     const { redirectTo } = environment
     return from(this.supabaseClient.auth.signInWithOAuth({
-      provider: 'google',
+      provider,
       options: { redirectTo },
     }))
   }
