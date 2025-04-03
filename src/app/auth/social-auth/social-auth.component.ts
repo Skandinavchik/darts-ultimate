@@ -20,8 +20,21 @@ export class SocialAuthComponent {
   facebookIcon = faFacebook
   appleIcon = faApple
 
-  onGoogleButton() {
-    this.authService.signWithGoogle()
+  onGoogleButtonClick() {
+    this.authService.signInWithSocial('google')
+      .pipe(take(1))
+      .subscribe({
+        next: res => {
+          console.log(res)
+        },
+        error: err => {
+          console.log(err)
+        },
+      })
+  }
+
+  onFacebookButtonClick() {
+    this.authService.signInWithSocial('facebook')
       .pipe(take(1))
       .subscribe({
         next: res => {
