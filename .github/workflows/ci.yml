@@ -46,6 +46,7 @@ jobs:
           echo "    url: '${{ secrets.SUPABASE_URL }}'," >> src/environments/environment.development.ts
           echo "    key: '${{ secrets.SUPABASE_KEY }}'," >> src/environments/environment.development.ts
           echo "  }," >> src/environments/environment.development.ts
+          echo "  redirectTo: 'https://dev-dartsultimate.netlify.app/profile'," >> src/environments/environment.development.ts
           echo "}" >> src/environments/environment.development.ts
 
       - name: Setup Node.js
