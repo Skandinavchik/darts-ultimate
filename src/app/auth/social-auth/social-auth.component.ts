@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core'
 import { Router, RouterLink } from '@angular/router'
 import { MatButtonModule } from '@angular/material/button'
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
-import { faGoogle, faFacebook, faApple } from '@fortawesome/free-brands-svg-icons'
+import { faGoogle, faFacebook } from '@fortawesome/free-brands-svg-icons'
 import { catchError, take } from 'rxjs'
 import { AuthService } from '../auth.service'
 import { Provider } from '@supabase/supabase-js'
@@ -19,7 +19,6 @@ export class SocialAuthComponent {
 
   googleIcon = faGoogle
   facebookIcon = faFacebook
-  appleIcon = faApple
 
   onSocialButtonClick(provider: Provider) {
     this.authService.signInWithSocial(provider)
