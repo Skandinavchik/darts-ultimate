@@ -44,12 +44,18 @@ export class SignUpComponent {
     Object.entries(this.signUpForm.controls).forEach(([name, control]) => {
       merge(control.statusChanges, control.valueChanges)
         .pipe(takeUntilDestroyed())
-        .subscribe(() => this.authService.handleErrorMessage(name, control))
+        .subscribe(() => this.handleErrorMessage(name, control))
     })
   }
 
   onSubmit() {
-    if (this.signUpForm.invalid) return
+    if (this.signUpForm.invalid) {
+      Object.entries(this.signUpForm.controls).forEach(([name, control]) => {
+        this.handleErrorMessage(name, control)
+      })
+
+      return
+    }
 
     const { email, password, fullname } = this.authService.transformUserInputs(this.signUpForm.getRawValue())
 
